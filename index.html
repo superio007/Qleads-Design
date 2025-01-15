@@ -19,47 +19,801 @@
       src="https://kit.fontawesome.com/ed4167ae3c.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="index.css" />
+    <style>
+      * {
+        font-family: Nunito Sans;
+      }
+      .slider-container,
+      .slider-container2 {
+        position: relative;
+        height: 600px;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .slide,
+      .slide1 {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      /* Arrows */
+      .arrows,
+      .arrows1 {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        display: flex;
+        gap: 25px;
+        padding: 20px;
+      }
+
+      .arrow {
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .arrow:hover {
+        transform: scale(1.2);
+      }
+
+      /* Dots */
+      .dots {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .dot {
+        width: 15px;
+        height: 15px;
+        background-color: #ccc;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .dot.active {
+        background-color: #555;
+      }
+
+      .hidden {
+        display: none;
+      }
+      .image-container {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .image-container .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+      }
+      .image-container .overlay p {
+        bottom: 0;
+        position: absolute;
+      }
+
+      .image-container:hover img {
+        transform: scale(1.1);
+      }
+
+      .image-container:hover .overlay {
+        opacity: 1;
+      }
+
+      .text-section {
+        flex: 1;
+        padding: 2rem;
+      }
+
+      .main-heading {
+        font-size: 3rem;
+        font-weight: bold;
+        color: black;
+      }
+
+      .main-heading span {
+        color: #bf3326;
+      }
+
+      .subtext {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        color: gray;
+      }
+
+      /* Cards Section */
+      .cards-section {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: flex-start;
+      }
+
+      /* Card Styling */
+      .card {
+        background: black;
+        color: white;
+        flex: 1 1 45%;
+        padding: 2rem;
+        position: relative;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+      }
+
+      .card h3 {
+        color: #bf3326;
+      }
+
+      .card p {
+        color: #ccc;
+      }
+
+      /* Hover Effect */
+      .card:hover {
+        transform: translateY(-10px);
+        background: #333;
+      }
+
+      /* Static Card (Always Hovered State) */
+      .static-card {
+        background: #333;
+        transform: translateY(-10px);
+      }
+
+      /* Icon Styling */
+      .icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      @media screen and (max-width: 769px) {
+        .cards-section {
+          flex: auto;
+        }
+        .slider-container {
+          height: 300px !important;
+        }
+        .slider-container2 {
+          height: 300px !important;
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- navbar -->
-    <nav class="navbar d-flex justify-content-between px-3">
-      <img src="./assests/logo.png" alt="main logo" style="width: 150px" />
-      <button
-        class="btn btn-primary"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight"
-      >
-        <i class="fa-solid fa-bars fa-xl" style="color: #000000"></i>
-      </button>
-    </nav>
-    <!-- Offscreen -->
-    <div
-      class="offcanvas offcanvas-end"
-      tabindex="-1"
-      id="offcanvasRight"
-      aria-labelledby="offcanvasRightLabel"
-    >
-      <div class="offcanvas-header">
-        <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+    <div class="container-md container-fluid">
+      <!-- navbar -->
+      <nav class="navbar d-flex justify-content-between px-3">
+        <img src="./assests/logo.png" alt="main logo" style="width: 150px" />
         <button
+          class="btn"
           type="button"
-          class="btn-close text-reset"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="offcanvas-body">...</div>
-    </div>
-    <div class="container-xl">
-      <div class="row hero" style="background-image: url(./assests/Adaptable_Automation.jpg) !important; min-height: 600px">
-        <div class="col-md-6">
-fdgfdgdg
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
+          <i class="fa-solid fa-bars fa-xl" style="color: #000000"></i>
+        </button>
+      </nav>
+      <!-- Offscreen -->
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
         </div>
-        <div class="col-md-6"></div>
+        <div class="offcanvas-body">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About US</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+          </ul>
+        </div>
       </div>
+      <!-- Hero sllider -->
+      <div class="slider-container">
+        <!-- Slide 1 -->
+        <div
+          class="slide"
+          id="slide1"
+          style="
+            background-image: url('./assests/slider1.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+          "
+        >
+          <!-- <img src="./assests/slider1.png" alt=""> -->
+        </div>
+
+        <!-- Slide 2 -->
+        <div
+          class="slide hidden"
+          id="slide2"
+          style="
+            background-image: url('./assests/slider2.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+          "
+        >
+          <!-- <img src="./assests/slider2.png" alt=""> -->
+        </div>
+
+        <!-- Arrows -->
+        <div class="arrows">
+          <div class="arrow" onclick="prevSlide()">
+            <span
+              style="
+                border: 1px solid #000;
+                padding: 2px 12px;
+                border-radius: 51%;
+              "
+            >
+              <i
+                class="fa-solid fa-arrow-left fa-2xs"
+                style="color: #000000"
+              ></i>
+            </span>
+          </div>
+          <div class="arrow" onclick="nextSlide()">
+            <span
+              style="
+                border: 1px solid #000;
+                padding: 2px 12px;
+                border-radius: 51%;
+              "
+            >
+              <i
+                class="fa-solid fa-arrow-right fa-2xs"
+                style="color: #000000"
+              ></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="dots">
+          <div class="dot active" onclick="showSlide(1)"></div>
+          <div class="dot" onclick="showSlide(2)"></div>
+        </div>
+      </div>
+      <!--counter  -->
+      <div class="my-4" style="background-color: #bf3326; padding: 20px 0">
+        <div class="row offset-1">
+          <div class="col-2">
+            <h2 class="counter text-white text-center fw-bold" data-target="20">
+              0
+            </h2>
+            <p class="text-center text-white fw-bold">Years of Excellence</p>
+          </div>
+          <div class="col-2">
+            <h2
+              class="counter text-white text-center fw-bold"
+              data-target="100"
+            >
+              0
+            </h2>
+            <p class="text-center text-white fw-bold">Years of Excellence</p>
+          </div>
+          <div class="col-2">
+            <h2
+              class="counter text-white text-center fw-bold"
+              data-target="10000"
+            >
+              0
+            </h2>
+            <p class="text-center text-white fw-bold">Years of Excellence</p>
+          </div>
+          <div class="col-2">
+            <h2
+              class="counter text-white text-center fw-bold"
+              data-target="250"
+            >
+              0
+            </h2>
+            <p class="text-center text-white fw-bold">Expert Team</p>
+          </div>
+          <div class="col-2">
+            <h2 class="counter text-white text-center fw-bold" data-target="50">
+              0
+            </h2>
+            <p class="text-center text-white fw-bold">Partner Brands</p>
+          </div>
+        </div>
+      </div>
+      <!-- slider 2 -->
+      <div class="slider-container2 my-4">
+        <!-- Slide 1 -->
+        <div
+          class="slide1"
+          id="slide2"
+          style="
+            background-image: url('./assests/slider3.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+          "
+        >
+          <!-- <img src="./assests/slider1.png" alt=""> -->
+        </div>
+
+        <!-- Slide 2 -->
+        <div
+          class="slide1 hidden"
+          id="slide3"
+          style="
+            background-image: url('./assests/slider4.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+          "
+        >
+          <!-- <img src="./assests/slider2.png" alt=""> -->
+        </div>
+
+        <!-- Arrows -->
+        <div class="arrows1">
+          <div class="arrow" onclick="prevSlide1()">
+            <span
+              style="
+                border: 1px solid #000;
+                padding: 2px 12px;
+                border-radius: 51%;
+              "
+            >
+              <i
+                class="fa-solid fa-arrow-left fa-2xs"
+                style="color: #000000"
+              ></i>
+            </span>
+          </div>
+          <div class="arrow" onclick="nextSlide1()">
+            <span
+              style="
+                border: 1px solid #000;
+                padding: 2px 12px;
+                border-radius: 51%;
+              "
+            >
+              <i
+                class="fa-solid fa-arrow-right fa-2xs"
+                style="color: #000000"
+              ></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- services -->
+      <div class="row my-4" style="padding: 0 12px 0 0">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-6 mb-3">
+              <div class="image-container">
+                <img
+                  style="width: 300px; height: 300px"
+                  src="./assests/migration services.png"
+                  alt="Migration Services"
+                />
+                <div class="overlay">
+                  <p>Migration Services</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="image-container">
+                <img
+                  style="width: 300px; height: 300px"
+                  src="./assests/training & certification.png"
+                  alt="Training & Certification"
+                />
+                <div class="overlay">
+                  <p>Training & Certification</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="image-container">
+                <img
+                  style="width: 300px; height: 300px"
+                  src="./assests/Onsite & Remote.png"
+                  alt="Remote & Onsite Deployment"
+                />
+                <div class="overlay">
+                  <p>Remote & Onsite Deployment</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="image-container">
+                <img
+                  style="width: 300px; height: 300px"
+                  src="./assests/SLA's.png"
+                  alt="Specialized SLAs"
+                />
+                <div class="overlay">
+                  <p>Specialized SLAs</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-md-6"
+          style="background-color: #bf3326; display: grid; padding: 4rem"
+        >
+          <div
+            style="display: grid; justify-items: left; align-content: center"
+          >
+            <h2
+              class="text-center text-uppercase"
+              style="color: #000; font-weight: 700; font-size: 3rem"
+            >
+              No Look Further
+            </h2>
+            <h2
+              class="text-center text-uppercase text-white fw-bold"
+              style="font-size: 3rem"
+            >
+              For World-Class
+            </h2>
+            <h2
+              class="text-uppercase text-white fw-bold"
+              style="font-size: 3rem"
+            >
+              Services
+            </h2>
+            <p class="text-white fw-bold">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Corrupti, minus dolores. Ab obcaecati incidunt, nesciunt voluptate
+              at in quaerat blanditiis corporis.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- sucess -->
+      <div class="my-4">
+        <div class="row">
+          <!-- Left Text Section -->
+          <div
+            class="col-md-6 text-section d-grid justify-content-center align-content-center"
+            style="
+              background-image: url(./assests/Untitled\ design.png);
+              background-repeat: no-repeat;
+              background-size: cover;
+            "
+          >
+            <h1 class="main-heading">
+              Your <br />
+              Success Is <br />
+              <span>Our Success</span>
+            </h1>
+            <p class="subtext">
+              Leading VAD for Global Information Technology vendors, with over
+              20 years of cross-domain expertise!
+            </p>
+          </div>
+
+          <!-- Right Cards Section -->
+          <div class="col-md-6 cards-section">
+            <div class="card">
+              <div class="icon">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <h3>End Users</h3>
+              <p>
+                We translate your business requirements into an achievable,
+                dynamic IT solution.
+              </p>
+            </div>
+            <div class="card">
+              <div class="icon">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <h3>Partners</h3>
+              <p>
+                We empower our partners with the latest technologies to inspire
+                their success.
+              </p>
+            </div>
+            <div class="card">
+              <div class="icon">
+                <i class="fas fa-briefcase"></i>
+              </div>
+              <h3>Vendors</h3>
+              <p>
+                We translate your business <br />
+                requirements into an achievable,<br />
+                dynamic IT solution.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Our offices -->
+      <div
+        style="
+          background-color: #f6f6f6;
+          width: 100%;
+          /* height: 600px; */
+          padding: 18px;
+        "
+        class="my-4"
+      >
+        <div class="d-flex justify-content-center">
+          <h2
+            class="text-center text-uppercase fw-bold"
+            style="font-size: 3rem"
+          >
+            Our <span style="color: #bf3326">Presence</span>
+          </h2>
+        </div>
+        <div class="d-flex justify-content-center">
+          <img src="./assests/map.png" alt="" style="width: 100%" />
+        </div>
+      </div>
+      <!-- our Rewards -->
+      <div class="row my-4">
+        <div
+          class="col-md-4 col-12 d-grid justify-content-center align-content-center"
+          style="background-color: #bf3326; color: #fff; padding: 20px 40px"
+        >
+          <h2 class="text-uppercase fw-bold" style="font-size: 3rem">
+            Our <br />
+            Accolades
+          </h2>
+          <p>
+            Leading VAD for Global Information Technology vendors, with over 20
+            years of cross-domain expertise!
+          </p>
+        </div>
+        <div class="col-md-8 col-12">
+          <div class="row m-4">
+            <div
+              class="col-md-6 col-6 d-flex justify-content-center align-items-center"
+            >
+              <img src="./assests/award1.png" alt="" />
+            </div>
+            <div
+              class="col-md-6 col-6 d-flex justify-content-center align-items-center"
+            >
+              <img src="./assests/award2.png" alt="" />
+            </div>
+          </div>
+          <div class="row m-4">
+            <div
+              class="col-md-6 col-6 d-flex justify-content-center align-items-center"
+            >
+              <img src="./assests/award1.png" alt="" />
+            </div>
+            <div
+              class="col-md-6 col-6 d-flex justify-content-center align-items-center"
+            >
+              <img src="./assests/award2.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- product -->
+      <div class="my-4" style="position: relative">
+        <div class="row">
+          <div class="col-3 p-0">
+            <img src="./assests/images (2).jpg" alt="" style="width: 100%" />
+          </div>
+          <div class="col-3 p-0">
+            <img src="./assests/download (3).jpg" alt="" style="width: 100%" />
+          </div>
+          <div class="col-3 p-0">
+            <img src="./assests/images (2).jpg" alt="" style="width: 100%" />
+          </div>
+          <div class="col-3 p-0">
+            <img src="./assests/download (3).jpg" alt="" style="width: 100%" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 p-0">
+            <img src="./assests/download (3).jpg" alt="" style="width: 100%" />
+          </div>
+          <div class="col-3 p-0">
+            <img src="./assests/images (2).jpg" alt="" style="width: 100%" />
+          </div>
+          <div class="col-3 p-0">
+            <img src="./assests/download (3).jpg" alt="" style="width: 100%" />
+          </div>
+          <div class="col-3 p-0">
+            <img src="./assests/images (2).jpg" alt="" style="width: 100%" />
+          </div>
+        </div>
+        <img
+          src="./assests/download.png"
+          alt=""
+          style="
+            width: 9%;
+            border-radius: 12px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          "
+        />
+      </div>
+      <!-- footer -->
+      <footer class="footer">
+        <div class="row">
+          <p class="text-center">Copyright © 2025 VAD. All rights reserved</p>
+        </div>
+      </footer>
     </div>
+    <script>
+      // Select all cards
+      document.querySelectorAll(".card").forEach((card) => {
+        // Add hover effects dynamically
+        card.addEventListener("mouseenter", () => {
+          if (!card.classList.contains("static-card")) {
+            card.style.transform = "translateY(-10px)";
+            card.style.backgroundColor = "#333";
+          }
+        });
+
+        card.addEventListener("mouseleave", () => {
+          if (!card.classList.contains("static-card")) {
+            card.style.transform = "translateY(0)";
+            card.style.backgroundColor = "black";
+          }
+        });
+      });
+      //   hero slider
+      // Hero Slider
+      let currentSlide = 1;
+
+      function showSlide(slideNumber) {
+        const slides = document.querySelectorAll(".slide");
+        const dots = document.querySelectorAll(".dot");
+
+        slides.forEach((slide, index) => {
+          if (index + 1 === slideNumber) {
+            slide.classList.remove("hidden");
+          } else {
+            slide.classList.add("hidden");
+          }
+        });
+
+        dots.forEach((dot, index) => {
+          if (index + 1 === slideNumber) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+
+        currentSlide = slideNumber;
+      }
+
+      function prevSlide() {
+        currentSlide = currentSlide === 1 ? 2 : currentSlide - 1;
+        showSlide(currentSlide);
+      }
+
+      function nextSlide() {
+        currentSlide = currentSlide === 2 ? 1 : currentSlide + 1;
+        showSlide(currentSlide);
+      }
+
+      // Auto-increment slides every 5 seconds
+      setInterval(() => {
+        nextSlide();
+      }, 5000);
+
+      // Slider 2
+      let currentSlide1 = 1;
+
+      function showSlide2(slideNumber) {
+        const slides1 = document.querySelectorAll(".slide1");
+
+        slides1.forEach((slide1, index) => {
+          if (index + 1 === slideNumber) {
+            slide1.classList.remove("hidden");
+          } else {
+            slide1.classList.add("hidden");
+          }
+        });
+
+        currentSlide1 = slideNumber;
+      }
+
+      function prevSlide1() {
+        currentSlide1 = currentSlide1 === 1 ? 2 : currentSlide1 - 1;
+        showSlide2(currentSlide1);
+      }
+
+      function nextSlide1() {
+        currentSlide1 = currentSlide1 === 2 ? 1 : currentSlide1 + 1;
+        showSlide2(currentSlide1);
+      }
+
+      // Auto-increment slides1 every 5 seconds
+      setInterval(() => {
+        nextSlide1();
+      }, 5000);
+
+      //   counters
+      const counters = document.querySelectorAll(".counter");
+
+      counters.forEach((counter) => {
+        const updateCounter = () => {
+          const target = +counter.getAttribute("data-target");
+          const count = +counter.innerText;
+
+          const increment = target / 200;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCounter, 10);
+          } else {
+            counter.innerText = target;
+          }
+        };
+
+        updateCounter();
+      });
+    </script>
   </body>
 </html>
